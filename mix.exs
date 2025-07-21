@@ -43,9 +43,9 @@ defmodule ExMgrs.MixProject do
         "README.md",
         "LICENSE*"
       ],
-      maintainers: ["Your Name"],
+      maintainers: ["Cort Fritz"],
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/your-org/ex_mgrs"}
+      links: %{"GitHub" => "https://github.com/cortfritz/ex_mgrs"}
     ]
   end
 end

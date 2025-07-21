@@ -4,7 +4,7 @@ Elixir library for converting between latitude/longitude coordinates and MGRS (M
 
 ## Features
 
-- Convert decimal degrees (lat/lon) to MGRS grid references
+- Convert decimal degrees (lat/lon) to MGRS grid reference string
 - Convert MGRS grid reference string back to decimal degrees
 - Configurable precision levels (1-5 digits, default 5)
 
@@ -37,7 +37,7 @@ If you want to contribute or use the latest development version:
 
 ```bash
 # Clone with submodules to get the geoconvert library
-git clone --recursive https://github.com/your-org/ex_mgrs.git
+git clone --recursive https://github.com/cortfritz/ex_mgrs.git
 cd ex_mgrs
 
 # If you already cloned without --recursive, initialize submodules:
@@ -79,7 +79,7 @@ iex> ExMgrs.latlon_to_mgrs(34.0, -118.24, 3)
 
 ```bash
 # Clone the repository with submodules (for development)
-git clone --recursive https://github.com/your-org/ex_mgrs.git
+git clone --recursive https://github.com/cortfritz/ex_mgrs.git
 cd ex_mgrs
 
 # If you already cloned without --recursive, initialize submodules:
@@ -103,16 +103,19 @@ mix format
 This library includes coordinate conversion functionality in two ways:
 
 **For Development:**
+
 - `native/geoconvert/` - Git submodule pointing to the upstream [geoconvert-rs](https://github.com/ncrothers/geoconvert-rs) repository
-- Allows easy updates from upstream: `git submodule update --remote`
+- To update from upstream: `git submodule update --remote`
 
 **For Hex Packages:**
+
 - `native/geoconvert_embedded/` - Embedded copy of geoconvert source included in Hex packages
 - Ensures users can install from Hex without needing git submodules
 
 **Common Structure:**
+
 - `lib/ex_mgrs.ex` - Main public API
-- `lib/ex_mgrs/native.ex` - NIF interface  
+- `lib/ex_mgrs/native.ex` - NIF interface
 - `native/geoconvert_nif/` - Thin Rust NIF wrapper that interfaces with geoconvert
 
 ## Contributing
