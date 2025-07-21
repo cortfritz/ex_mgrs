@@ -4,8 +4,8 @@ defmodule ExMgrs.MixProject do
   def project do
     [
       app: :ex_mgrs,
-      version: "0.0.1",
-      elixir: "~> 1.19-rc",
+      version: "0.0.2",
+      elixir: "~> 1.18.4",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: description(),
