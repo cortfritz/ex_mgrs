@@ -1,0 +1,3 @@
+[submodule "native/geoconvert"]
+	path = native/geoconvert
+	url = git@github.com:ncrothers/geoconvert-rs.git

@@ -1,0 +1,12 @@
+[package]
+name = "geoconvert_nif"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "geoconvert_nif"
+crate-type = ["cdylib"]
+
+[dependencies]
+rustler = "0.36"
+geoconvert = { path = "../geoconvert" }
