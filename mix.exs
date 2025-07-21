@@ -23,12 +23,13 @@ defmodule ExMgrs.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:rustler, "~> 0.36"}
+      {:rustler, "~> 0.36"},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
 
   defp description do
-    "High-performance Elixir library for converting between latitude/longitude coordinates and MGRS (Military Grid Reference System) coordinates using embedded Rust geoconvert library."
+    "Elixir library for converting between latitude/longitude coordinates and MGRS (Military Grid Reference System) coordinates using embedded Rust geoconvert library."
   end
 
   defp package do
