@@ -1,7 +1,7 @@
 defmodule ExMgrs do
   @moduledoc """
   A library for converting between latitude/longitude coordinates and MGRS (Military Grid Reference System) coordinates.
-  
+
   This module provides functions to convert between decimal degree coordinates (latitude/longitude)
   and MGRS coordinate strings using the WGS84 ellipsoid.
   """
@@ -26,7 +26,8 @@ defmodule ExMgrs do
       {:ok, "11SLT8548562848"}
 
   """
-  def latlon_to_mgrs(lat, lon, precision \\ 5) when is_number(lat) and is_number(lon) and is_integer(precision) do
+  def latlon_to_mgrs(lat, lon, precision \\ 5)
+      when is_number(lat) and is_number(lon) and is_integer(precision) do
     Native.latlon_to_mgrs_nif(lat, lon, precision)
   end
 

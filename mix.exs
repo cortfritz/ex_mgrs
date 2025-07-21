@@ -4,10 +4,12 @@ defmodule ExMgrs.MixProject do
   def project do
     [
       app: :ex_mgrs,
-      version: "0.1.0",
+      version: "0.0.1",
       elixir: "~> 1.19-rc",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      description: description(),
+      package: package()
     ]
   end
 
@@ -21,7 +23,29 @@ defmodule ExMgrs.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:rustler, "~> 0.34"}
+      {:rustler, "~> 0.36"}
+    ]
+  end
+
+  defp description do
+    "High-performance Elixir library for converting between latitude/longitude coordinates and MGRS (Military Grid Reference System) coordinates using embedded Rust geoconvert library."
+  end
+
+  defp package do
+    [
+      name: "ex_mgrs",
+      files: [
+        "lib",
+        "native/geoconvert_nif/src",
+        "native/geoconvert_nif/Cargo.toml",
+        "native/geoconvert_embedded",
+        "mix.exs",
+        "README.md",
+        "LICENSE*"
+      ],
+      maintainers: ["Your Name"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/your-org/ex_mgrs"}
     ]
   end
 end

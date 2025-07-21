@@ -9,4 +9,6 @@ crate-type = ["cdylib"]
 
 [dependencies]
 rustler = "0.36"
-geoconvert = { path = "../geoconvert" }
+
+# Use embedded version that will be included in Hex packages
+geoconvert = { path = "../geoconvert_embedded" }
