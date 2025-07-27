@@ -27,9 +27,9 @@ This project uses GitHub Actions for continuous integration and deployment. The 
 #### Publish Job
 - Only runs when code is pushed to `main` branch in the original repository (`cortfritz/ex_mgrs`)
 - Requires the test job to pass first
-- Automatically bumps the patch version
-- Commits and pushes the version bump
-- Publishes the package to Hex
+- Checks if the version in `mix.exs` has changed from the previous release
+- Only publishes to Hex if the version has been updated
+- Skips publishing if the version is unchanged (prevents duplicate releases)
 
 ## Required Setup
 
@@ -88,11 +88,30 @@ The workflow needs permission to push commits back to the repository for version
 
 ## Version Bumping
 
-The workflow automatically bumps the patch version (e.g., 0.0.3 → 0.0.4) when publishing. If you need to bump major or minor versions, you'll need to:
+**Manual Version Management**: The workflow no longer automatically bumps versions. You must manually update the version in `mix.exs` before merging to `main`.
 
-1. Manually update the version in `mix.exs`
-2. Commit and push to `main`
-3. The workflow will then publish with the new version
+### Workflow:
+
+1. **Update version in PR**: Change the version in `mix.exs` in your feature branch
+2. **Create PR**: Submit PR to `main` with version change
+3. **Merge**: When merged, the workflow will detect the version change and publish to Hex
+4. **Skip if unchanged**: If no version change, the workflow skips publishing
+
+### Version Bump Examples:
+
+```elixir
+# In mix.exs
+version: "0.0.4"  # Patch version bump
+version: "0.1.0"  # Minor version bump  
+version: "1.0.0"  # Major version bump
+```
+
+### Benefits:
+
+- ✅ **Prevents duplicate releases**: Won't publish same version twice
+- ✅ **Manual control**: You decide when to release
+- ✅ **Semantic versioning**: Follow proper semver practices
+- ✅ **PR review**: Version changes are reviewed before publishing
 
 ## Manual Publishing
 

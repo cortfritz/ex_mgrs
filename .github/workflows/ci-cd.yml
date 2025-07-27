@@ -91,35 +91,37 @@ jobs:
     - name: Run tests
       run: mix test
 
-    - name: Configure Git
+    - name: Check if version changed
+      id: version-check
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-
-    - name: Bump version
-      run: |
-        # Get current version
+        # Get current version from mix.exs
         CURRENT_VERSION=$(grep 'version:' mix.exs | sed 's/.*version: "\(.*\)",/\1/')
-        echo "Current version: $CURRENT_VERSION"
+        echo "Current version in mix.exs: $CURRENT_VERSION"
         
-        # Parse version components
-        IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT_VERSION"
+        # Get the previous version from git history
+        PREVIOUS_VERSION=$(git log --oneline -n 10 --grep="Bump version" | head -1 | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+' || echo "0.0.0")
+        echo "Previous version from git: $PREVIOUS_VERSION"
         
-        # Bump patch version
-        NEW_PATCH=$((PATCH + 1))
-        NEW_VERSION="$MAJOR.$MINOR.$NEW_PATCH"
-        echo "New version: $NEW_VERSION"
-        
-        # Update mix.exs
-        sed -i "s/version: \"$CURRENT_VERSION\"/version: \"$NEW_VERSION\"/" mix.exs
-        
-        # Commit and push the version bump
-        git add mix.exs
-        git commit -m "Bump version to $NEW_VERSION [skip ci]"
-        git push
+        # Check if version has changed
+        if [ "$CURRENT_VERSION" != "$PREVIOUS_VERSION" ]; then
+          echo "Version has changed from $PREVIOUS_VERSION to $CURRENT_VERSION"
+          echo "should_publish=true" >> $GITHUB_OUTPUT
+          echo "version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+        else
+          echo "Version has not changed ($CURRENT_VERSION), skipping publish"
+          echo "should_publish=false" >> $GITHUB_OUTPUT
+          echo "version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+        fi
 
     - name: Publish to Hex
+      if: steps.version-check.outputs.should_publish == 'true'
       env:
         HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
       run: |
-        mix hex.publish --yes 
+        echo "Publishing version ${{ steps.version-check.outputs.version }} to Hex"
+        mix hex.publish --yes
+
+    - name: Skip publish
+      if: steps.version-check.outputs.should_publish == 'false'
+      run: |
+        echo "Skipping publish - version ${{ steps.version-check.outputs.version }} already exists on Hex" 
