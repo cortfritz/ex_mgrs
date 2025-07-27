@@ -1,6 +1,6 @@
 # ExMgrs
 
-Elixir library for converting between latitude/longitude coordinates and MGRS (Military Grid Reference System) coordinates. Built with Rust NIFs for maximum speed and accuracy using the embedded [geoconvert-rs](https://github.com/ncrothers/geoconvert-rs) Rust library.
+Elixir library for converting between latitude/longitude coordinates and MGRS (Military Grid Reference System) coordinates. Built with Rust NIFs for maximum speed and accuracy using the embedded [geoconvert-rs](https://github.com/cortfritz/geoconvert-rs) Rust library.
 
 ## Features
 
@@ -104,7 +104,7 @@ This library includes coordinate conversion functionality in two ways:
 
 **For Development:**
 
-- `native/geoconvert/` - Git submodule pointing to the upstream [geoconvert-rs](https://github.com/ncrothers/geoconvert-rs) repository
+- `native/geoconvert/` - Git submodule pointing to the [geoconvert-rs](https://github.com/cortfritz/geoconvert-rs) fork
 - To update from upstream: `git submodule update --remote`
 
 **For Hex Packages:**

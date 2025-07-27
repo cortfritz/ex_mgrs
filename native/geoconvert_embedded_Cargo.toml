@@ -1,16 +1,18 @@
 [package]
 name = "geoconvert"
 description = "A lightweight library to convert between geographic coordinate systems"
-authors = ["Nicholas Crothers <ncrothers523@gmail.com>"]
+authors = ["Nicholas Crothers <ncrothers523@gmail.com>", "Cort Fritz <cortfritz@gmail.com>"]
 license = "MIT"
-repository = "https://github.com/ncrothers/geoconvert-rs"
+repository = "https://github.com/cortfritz/geoconvert-rs"
 version = "1.0.2"
 edition = "2021"
+
+[package.metadata.docs.rs]
+rustdoc-args = ["--cfg", "docsrs"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-lazy_static = "1.4.0"
 num = "0.4.1"
 ryu = "1.0.16"
 serde = { version = "1.0.192", features = ["derive"], optional = true }
