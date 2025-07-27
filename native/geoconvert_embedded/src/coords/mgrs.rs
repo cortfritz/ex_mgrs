@@ -1,6 +1,5 @@
-use std::{fmt::Display, str::FromStr};
+use std::{fmt::Display, str::FromStr, sync::LazyLock};
 
-use lazy_static::lazy_static;
 use num::Integer;
 
 use crate::{Error, utm::{zonespec::{MINUTMZONE, MAXUTMZONE, UPS, self}, UtmUps}, utility::{dms, GeoMath}, ThisOrThat, latlon::LatLon};
@@ -377,7 +376,7 @@ fn utm_row(band_idx: i32, col_idx: i32, row_idx: i32) -> i32 {
         94
     };
 
-    let base_row = (min_row + max_row) / 2 - UTM_ROW_PERIOD / 2;
+    let base_row = i32::midpoint(min_row, max_row) - UTM_ROW_PERIOD / 2;
     // Offset row_idx by the multiple of UTM_ROW_PERIOD which brings it as close as
     // possible to the center of the latitude band, (min_row + max_row) / 2.
     // (Add MAXUTM_S_ROW = 5 * UTM_ROW_PERIOD to ensure operand is positive.0)
@@ -765,9 +764,7 @@ pub(crate) fn to_latitude_band(lat: f64) -> i32 {
 }
 
 pub(crate) fn check_coords(utmp: bool, northp: bool, x: f64, y: f64) -> Result<(bool, f64, f64), Error> {
-    lazy_static! {
-        static ref ANG_EPS: f64 = 1_f64 * 2_f64.powi(-(f64::DIGITS as i32 - 25));
-    }
+    static ANG_EPS: LazyLock<f64> = LazyLock::new(|| 1_f64 * 2_f64.powi(-(f64::DIGITS as i32 - 25)));
 
     let x_int = (x / f64::from(TILE)).floor() as i32;
     let y_int = (y / f64::from(TILE)).floor() as i32;
@@ -831,9 +828,7 @@ pub(crate) fn check_coords(utmp: bool, northp: bool, x: f64, y: f64) -> Result<(
 
 impl Display for Mgrs {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        lazy_static! {
-            static ref ANG_EPS: f64 = 1_f64 * 2_f64.powi(-(f64::MANTISSA_DIGITS as i32 - 7));
-        }
+        static ANG_EPS: LazyLock<f64> = LazyLock::new(|| 1_f64 * 2_f64.powi(-(f64::MANTISSA_DIGITS as i32 - 7)));
 
         let lat = if self.utm.zone > 0 {
             // Does a rough estimate for latitude determine the latitude band?
