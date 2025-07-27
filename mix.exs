@@ -4,12 +4,16 @@ defmodule ExMgrs.MixProject do
   def project do
     [
       app: :ex_mgrs,
-      version: "0.0.2",
-      elixir: "~> 1.18.4",
+      version: "0.0.3",
+      elixir: "~> 1.18.2",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: description(),
-      package: package()
+      package: package(),
+      dialyzer: [
+        plt_file: {:no_warn, "priv/plts/dialyzer.plt"},
+        ignore_warnings: ".dialyzer_ignore.exs"
+      ]
     ]
   end
 
@@ -24,7 +28,8 @@ defmodule ExMgrs.MixProject do
   defp deps do
     [
       {:rustler, "~> 0.36"},
-      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -49,4 +54,6 @@ defmodule ExMgrs.MixProject do
       links: %{"GitHub" => "https://github.com/cortfritz/ex_mgrs"}
     ]
   end
+
+
 end

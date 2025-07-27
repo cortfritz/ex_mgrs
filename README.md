@@ -71,7 +71,7 @@ iex> ExMgrs.latlon_to_mgrs(34.0, -118.24, 3)
 
 ### Prerequisites
 
-- Elixir 1.12+
+- Elixir 1.18.2+
 - Rust (managed by Rustler)
 - Git (for submodules)
 

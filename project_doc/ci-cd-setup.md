@@ -17,7 +17,7 @@ This project uses GitHub Actions for continuous integration and deployment. The 
 
 #### Test Job
 - Runs on all pushes and pull requests
-- Sets up Elixir 1.18.2 and OTP 26
+- Sets up Elixir 1.18.2 and OTP 27
 - Sets up Rust toolchain for NIF compilation
 - Installs dependencies with caching
 - Compiles the project
