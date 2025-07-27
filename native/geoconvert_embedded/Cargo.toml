@@ -1,9 +1,9 @@
 [package]
 name = "geoconvert"
 description = "A lightweight library to convert between geographic coordinate systems"
-authors = ["Nicholas Crothers <ncrothers523@gmail.com>"]
+authors = ["Nicholas Crothers <ncrothers523@gmail.com>", "Cort Fritz <cortfritz@gmail.com>"]
 license = "MIT"
-repository = "https://github.com/ncrothers/geoconvert-rs"
+repository = "https://github.com/cortfritz/geoconvert-rs"
 version = "1.0.2"
 edition = "2021"
 
