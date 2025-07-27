@@ -8,12 +8,11 @@
 Elixir library for converting between latitude/longitude coordinates and MGRS (Military Grid Reference System) coordinates. Built with Rust NIFs for maximum speed and accuracy using the embedded [geoconvert-rs](https://github.com/cortfritz/geoconvert-rs) Rust library.
 
 ## Features
-
-- ⚡ **High Performance**: Rust NIFs provide near-native speed for coordinate conversions
-- 🔄 **Bidirectional**: Convert lat/lon to MGRS and MGRS to lat/lon
-- 🎯 **Precise**: Configurable precision levels (1-5 digits, default 5)
-- 🛡️ **Robust**: Comprehensive error handling and input validation
-- 📦 **Self-contained**: Embedded Rust library for easy Hex installation
+Is a bare minimum of features needed to work with lat/lon and mgrs.
+- **High Performance**: Rust NIFs provide near-native speed for coordinate conversions
+- **Bidirectional**: Convert lat/lon to MGRS and MGRS to lat/lon
+- **Precision Control**: Configurable precision levels (1-5 digits, default 5)
+- **Self-contained**: Embedded Rust library for easy Hex installation
 
 ## Quick Start
 
@@ -271,7 +270,7 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 mix docs
 ```
 
-Once published to Hex, docs will be available at <https://hexdocs.pm/ex_mgrs>.
+Docs available at <https://hexdocs.pm/ex_mgrs>.
 
 ## Changelog
 
