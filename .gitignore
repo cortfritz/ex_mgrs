@@ -36,3 +36,6 @@ ex_mgrs-*.tar
 # Dialyzer PLT files (persistent lookup tables)
 /priv/plts/
 
+# Embedded Rust lock file (secondary copy)
+/native/geoconvert_embedded/Cargo.lock
+
