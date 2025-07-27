@@ -33,3 +33,6 @@ ex_mgrs-*.tar
 # Rustler build cache
 /priv/native/
 
+# Dialyzer PLT files (persistent lookup tables)
+/priv/plts/
+
