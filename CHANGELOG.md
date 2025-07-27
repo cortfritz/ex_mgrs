@@ -35,12 +35,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Git submodule setup for development workflow
 - Cross-platform compatibility (Linux, macOS, Windows)
 
-## [0.0.2] - Unreleased
+## [0.0.2] - Test release to prove it works as a dependency
 
 ### Changed
 - Development version with initial NIF implementation
 
-## [0.0.1] - Unreleased
+## [0.0.1] - Test release to prove it works as a dependency
 
 ### Added
 - Initial project setup
