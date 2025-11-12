@@ -22,8 +22,9 @@ erl_crash.dump
 # Also ignore archive artifacts (built via "mix archive.build").
 *.ez
 
-# Ignore package tarball (built via "mix hex.build").
+# Ignore package tarball and build directory (built via "mix hex.build").
 ex_mgrs-*.tar
+ex_mgrs-*/
 
 # Rust compilation artifacts
 /native/geoconvert_nif/target/
@@ -32,4 +33,10 @@ ex_mgrs-*.tar
 
 # Rustler build cache
 /priv/native/
+
+# Version manager configs (optional - developers can override locally)
+.tool-versions
+
+# Personal AI assistant instructions
+CLAUDE.md
 
