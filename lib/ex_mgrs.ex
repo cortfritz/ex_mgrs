@@ -51,4 +51,74 @@ defmodule ExMgrs do
   def mgrs_to_latlon(mgrs) when is_binary(mgrs) do
     Native.mgrs_to_latlon_nif(mgrs)
   end
+
+  @doc """
+  Formats an MGRS string with proper spacing.
+
+  Takes an MGRS string (with or without spaces) and returns it formatted with
+  standard spacing: GZD + space + 100km Square + space + Easting + space + Northing
+
+  ## Parameters
+  - `mgrs`: MGRS coordinate string (with or without spaces)
+
+  ## Returns
+  - `{:ok, formatted_string}` on success
+  - `{:error, reason}` if the MGRS string is invalid
+
+  ## Examples
+
+      iex> ExMgrs.format_mgrs("11SLT8548562848")
+      {:ok, "11S LT 85485 62848"}
+
+      iex> ExMgrs.format_mgrs("11S LT 85485 62848")
+      {:ok, "11S LT 85485 62848"}
+
+      iex> ExMgrs.format_mgrs("11SLT854628")
+      {:ok, "11S LT 854 628"}
+
+  """
+  def format_mgrs(mgrs) when is_binary(mgrs) do
+    # Remove all whitespace
+    clean = String.replace(mgrs, ~r/\s+/, "")
+
+    parse_mgrs(clean)
+  end
+
+  # Try 2-digit zone first
+  defp parse_mgrs(<<z1, z2, band, s1, s2, rest::binary>>)
+       when z1 in ?0..?9 and z2 in ?0..?9 and
+              band in ?C..?X and
+              s1 in ?A..?Z and s2 in ?A..?Z do
+    validate_and_format(<<z1, z2>>, <<band>>, <<s1, s2>>, rest)
+  end
+
+  # Try 1-digit zone
+  defp parse_mgrs(<<z1, band, s1, s2, rest::binary>>)
+       when z1 in ?0..?9 and
+              band in ?C..?X and
+              s1 in ?A..?Z and s2 in ?A..?Z do
+    validate_and_format(<<z1>>, <<band>>, <<s1, s2>>, rest)
+  end
+
+  defp parse_mgrs(_), do: {:error, "Invalid MGRS format"}
+
+  defp validate_and_format(zone, band, square, digits) do
+    digit_count = byte_size(digits)
+
+    cond do
+      digit_count > 10 ->
+        {:error, "Invalid MGRS: too many digits (max 10)"}
+
+      rem(digit_count, 2) != 0 ->
+        {:error, "Invalid MGRS: easting and northing must have equal precision"}
+
+      digit_count == 0 ->
+        {:ok, "#{zone}#{band} #{square}"}
+
+      true ->
+        precision = div(digit_count, 2)
+        <<easting::binary-size(precision), northing::binary-size(precision)>> = digits
+        {:ok, "#{zone}#{band} #{square} #{easting} #{northing}"}
+    end
+  end
 end

@@ -6,6 +6,7 @@ Elixir library for converting between latitude/longitude coordinates and MGRS (M
 
 - Convert decimal degrees (lat/lon) to MGRS grid reference string
 - Convert MGRS grid reference string back to decimal degrees
+- Format MGRS strings with proper spacing
 - Configurable precision levels (1-5 digits, default 5)
 
 ## Installation
@@ -17,7 +18,7 @@ Add `ex_mgrs` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:ex_mgrs, "~> 0.0.1"}
+    {:ex_mgrs, "~> 0.0.5"}
   ]
 end
 ```
@@ -62,18 +63,29 @@ iex> ExMgrs.latlon_to_mgrs(34.0, -118.24, 5)
 iex> ExMgrs.mgrs_to_latlon("11SLT8548562848")
 {:ok, {34.0, -118.24}}
 
+# Format MGRS string with proper spacing
+iex> ExMgrs.format_mgrs("11SLT8548562848")
+{:ok, "11S LT 85485 62848"}
+
+# Works with already-formatted strings too
+iex> ExMgrs.format_mgrs("11S LT 85485 62848")
+{:ok, "11S LT 85485 62848"}
+
 # Use different precision levels
 iex> ExMgrs.latlon_to_mgrs(34.0, -118.24, 3)
 {:ok, "11SLT854628"}
+
+iex> ExMgrs.format_mgrs("11SLT854628")
+{:ok, "11S LT 854 628"}
 ```
 
 ## Development
 
 ### Prerequisites
 
-- Elixir 1.12+
+- Elixir >= 1.18.2 and <= 1.19.2
 - Rust (managed by Rustler)
-- Git (for submodules)
+- Git (for submodules when developing from source)
 
 ### Setup
 
@@ -97,6 +109,8 @@ mix test
 # Format code
 mix format
 ```
+
+**Note:** This project includes a `mise.toml` file configured for Elixir 1.19.2-otp-28. If you use [mise](https://mise.jdx.dev/), it will automatically use this version. You can override this locally or use any version within the required range (>= 1.18.2 and <= 1.19.2) with your preferred version manager.
 
 ### Architecture
 
@@ -144,7 +158,9 @@ We welcome contributions! Please follow these guidelines:
 
 Please use GitHub Issues to report bugs or request features. Include:
 
-- Elixir and Rust versions
+- Elixir version (required: >= 1.18.2 and <= 1.19.2)
+- Rust version
+- Rustler version (this project uses ~> 0.36)
 - Operating system
 - Steps to reproduce
 - Expected vs actual behavior
