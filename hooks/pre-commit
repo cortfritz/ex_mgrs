@@ -1,0 +1,60 @@
+#!/bin/sh
+#
+# Pre-commit hook for ex_mgrs
+# Enforces code quality on main branch:
+# - Proper mix formatting
+# - No compilation warnings
+# - All tests passing
+#
+# To install: cp hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+# Or run: hooks/install-hooks.sh
+
+set -e
+
+# Get the current branch name
+BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null || echo "")
+
+# Only run checks on main branch
+if [ "$BRANCH" != "main" ]; then
+  echo "Pre-commit: Not on main branch, skipping quality checks"
+  exit 0
+fi
+
+echo "Pre-commit: Running quality checks on main branch..."
+echo ""
+
+# Check 1: Mix format
+echo "→ Checking code formatting..."
+if ! mix format --check-formatted 2>&1; then
+  echo ""
+  echo "❌ Pre-commit FAILED: Code is not properly formatted"
+  echo "   Run 'mix format' to fix formatting issues"
+  exit 1
+fi
+echo "✓ Formatting check passed"
+echo ""
+
+# Check 2: Compile with no warnings
+echo "→ Compiling with warnings-as-errors..."
+if ! mix compile --warnings-as-errors 2>&1; then
+  echo ""
+  echo "❌ Pre-commit FAILED: Compilation warnings detected"
+  echo "   Fix all compilation warnings before committing to main"
+  exit 1
+fi
+echo "✓ Compilation check passed"
+echo ""
+
+# Check 3: All tests pass
+echo "→ Running tests..."
+if ! mix test 2>&1; then
+  echo ""
+  echo "❌ Pre-commit FAILED: Tests are failing"
+  echo "   Fix all failing tests before committing to main"
+  exit 1
+fi
+echo "✓ All tests passed"
+echo ""
+
+echo "✅ Pre-commit: All quality checks passed!"
+exit 0
