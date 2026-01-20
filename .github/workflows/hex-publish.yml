@@ -17,7 +17,8 @@ jobs:
       - name: Set up Elixir
         uses: erlef/setup-beam@v1
         with:
-          elixir-version: '1.19.2-otp-28'
+          elixir-version: '1.19.2'
+          otp-version: '28'
           install-hex: false
           install-rebar: false
 
@@ -26,6 +27,7 @@ jobs:
 
       - name: Install Hex and Rebar
         run: |
+          mix archive.uninstall hex --force || true
           mix local.hex --force
           mix local.rebar --force
 
