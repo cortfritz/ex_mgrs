@@ -17,8 +17,7 @@ jobs:
       - name: Set up Elixir
         uses: erlef/setup-beam@v1
         with:
-          elixir-version: '1.18.2'
-          otp-version: '28.0'
+          elixir-version: '1.19.2-otp-28'
           install-hex: false
           install-rebar: false
 
