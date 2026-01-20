@@ -4,8 +4,8 @@ defmodule ExMgrs.MixProject do
   def project do
     [
       app: :ex_mgrs,
-      version: "0.0.5",
-      elixir: ">= 1.18.2 and <= 1.19.2",
+      version: "0.0.6",
+      elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: description(),
@@ -23,7 +23,8 @@ defmodule ExMgrs.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:rustler, "~> 0.36"},
+      {:rustler, "~> 0.36", runtime: false},
+      {:rustler_precompiled, "~> 0.8"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
@@ -40,6 +41,8 @@ defmodule ExMgrs.MixProject do
         "native/geoconvert_nif/src",
         "native/geoconvert_nif/Cargo.toml",
         "native/geoconvert_embedded",
+        "priv/native",
+        "checksum-*.exs",
         "mix.exs",
         "README.md",
         "LICENSE*"

@@ -31,9 +31,6 @@ ex_mgrs-*/
 /native/geoconvert/target/
 /native/geoconvert_embedded/target/
 
-# Rustler build cache
-/priv/native/
-
 # Version manager configs (optional - developers can override locally)
 .tool-versions
 

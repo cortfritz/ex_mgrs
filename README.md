@@ -30,7 +30,24 @@ mix deps.get
 mix compile
 ```
 
-**Note:** This package uses Rust NIFs and requires Rust to be installed for compilation. The Rust toolchain will be automatically managed by Rustler during the build process.
+**Note:** This package uses precompiled Rust NIFs for fast installation. **No Rust toolchain is required** for most platforms (macOS, Linux, Windows). Precompiled binaries are automatically downloaded during installation.
+
+If precompiled binaries are not available for your platform, the package will automatically fall back to compiling from source, which requires the Rust toolchain to be installed.
+
+#### Supported Platforms
+
+Precompiled binaries are provided for:
+- **macOS**: x86_64 (Intel), aarch64 (Apple Silicon)
+- **Linux**: x86_64 (glibc), x86_64 (musl), aarch64 (glibc), aarch64 (musl)
+- **Windows**: x86_64 (MSVC), x86_64 (GNU)
+
+#### Force Build from Source
+
+To force compilation from source instead of using precompiled binaries:
+
+```bash
+RUSTLER_PRECOMPILATION_EXAMPLE_BUILD=true mix deps.compile ex_mgrs --force
+```
 
 ### From Source (Development)
 
