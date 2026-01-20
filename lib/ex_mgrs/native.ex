@@ -5,7 +5,9 @@ defmodule ExMgrs.Native do
     otp_app: :ex_mgrs,
     crate: "geoconvert_nif",
     base_url: "https://github.com/cortfritz/ex_mgrs/releases/download/v#{version}",
-    force_build: System.get_env("RUSTLER_PRECOMPILATION_EXAMPLE_BUILD") in ["1", "true"] or Mix.env() in [:dev, :test],
+    force_build:
+      System.get_env("RUSTLER_PRECOMPILATION_EXAMPLE_BUILD") in ["1", "true"] or
+        Mix.env() in [:dev, :test],
     version: version
 
   # When your NIF is loaded, it will override this function.

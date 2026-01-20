@@ -42,7 +42,6 @@ defmodule ExMgrs.MixProject do
         "native/geoconvert_nif/Cargo.toml",
         "native/geoconvert_embedded",
         "priv/native",
-        "checksum-*.exs",
         "mix.exs",
         "README.md",
         "LICENSE*"
