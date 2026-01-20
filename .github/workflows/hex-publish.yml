@@ -19,12 +19,16 @@ jobs:
         with:
           elixir-version: '1.18.2'
           otp-version: '28.0'
+          install-hex: false
+          install-rebar: false
 
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
 
-      - name: Update Hex
-        run: mix local.hex --force
+      - name: Install Hex and Rebar
+        run: |
+          mix local.hex --force
+          mix local.rebar --force
 
       - name: Restore dependencies cache
         uses: actions/cache@v4
