@@ -4,7 +4,7 @@ defmodule ExMgrs.MixProject do
   def project do
     [
       app: :ex_mgrs,
-      version: "0.0.9",
+      version: "0.0.10",
       elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -42,6 +42,7 @@ defmodule ExMgrs.MixProject do
         "native/geoconvert_nif/Cargo.toml",
         "native/geoconvert_embedded",
         "priv/native",
+        "checksum-*.exs",
         "mix.exs",
         "README.md",
         "LICENSE*"
