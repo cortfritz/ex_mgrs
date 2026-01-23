@@ -1,0 +1,20 @@
+%{
+  "geoconvert_nif-v0.0.12-nif-2.15-x86_64-pc-windows-gnu.dll.tar.gz" => "sha256:2ee31e0c31396c3f7fbbcc298a9de00d5e7de7230d762ffa600ff8018dbea850",
+  "geoconvert_nif-v0.0.12-nif-2.15-x86_64-pc-windows-msvc.dll.tar.gz" => "sha256:5c05a8f37741c8b93b88030d2eba6cb96e17a701838d3207df276752483973e1",
+  "geoconvert_nif-v0.0.12-nif-2.16-x86_64-pc-windows-gnu.dll.tar.gz" => "sha256:c9bd861d95d0542fd48cd059b687e810b1cf50b4ab0eefea67fd59ba2df770a3",
+  "geoconvert_nif-v0.0.12-nif-2.16-x86_64-pc-windows-msvc.dll.tar.gz" => "sha256:688dfc7f82ce65b3b3d5ceb3fee7d04288682a732234e4234f893dbb46b1af5c",
+  "geoconvert_nif-v0.0.12-nif-2.17-x86_64-pc-windows-gnu.dll.tar.gz" => "sha256:c5be93f23d9f2caf55d1fdbcaf86d9ff0276b26b5caeb78aa3b8dc6fcedbeab7",
+  "geoconvert_nif-v0.0.12-nif-2.17-x86_64-pc-windows-msvc.dll.tar.gz" => "sha256:46eb9c070bc60a530323845b0ba8b03d32b75c3c4ceb9195e3885823ab2f6e7d",
+  "libgeoconvert_nif-v0.0.12-nif-2.15-aarch64-apple-darwin.so.tar.gz" => "sha256:e13bdb9ac2c364bc23e8a90033ab3e03e53b2477725266a1df8ad2aee83942e7",
+  "libgeoconvert_nif-v0.0.12-nif-2.15-aarch64-unknown-linux-gnu.so.tar.gz" => "sha256:4377d8f5ba14901a4c715684be788b06f73e2b24f990b6afc06aa1e309fb0f19",
+  "libgeoconvert_nif-v0.0.12-nif-2.15-x86_64-apple-darwin.so.tar.gz" => "sha256:8267a6dbde055a290ada24c42f17d76f93e6b3a7d0d352322e7781f7414a9b9f",
+  "libgeoconvert_nif-v0.0.12-nif-2.15-x86_64-unknown-linux-gnu.so.tar.gz" => "sha256:2d3bbe57fa2704f80c53cc05c05b82b2f7d9136697ac73f7f014b474d2e63864",
+  "libgeoconvert_nif-v0.0.12-nif-2.16-aarch64-apple-darwin.so.tar.gz" => "sha256:1d324aba1fd9ca29b85ecaa73d3eb2a7bfe3f06b9559d83a3d1188a0ddd4fb13",
+  "libgeoconvert_nif-v0.0.12-nif-2.16-aarch64-unknown-linux-gnu.so.tar.gz" => "sha256:8774831df867d4c9d00ef0316b3c6db80294c5bf6b76d0cfb3b249661017121e",
+  "libgeoconvert_nif-v0.0.12-nif-2.16-x86_64-apple-darwin.so.tar.gz" => "sha256:cc0aa4b27d6877995e4486891b5381b039bca9f2734590ff32f09f844c2b9f2e",
+  "libgeoconvert_nif-v0.0.12-nif-2.16-x86_64-unknown-linux-gnu.so.tar.gz" => "sha256:811b97beca236e2b44bc89eea176bc7723a3ad5c508ad25f95ebc6902aa9d8c5",
+  "libgeoconvert_nif-v0.0.12-nif-2.17-aarch64-apple-darwin.so.tar.gz" => "sha256:45ddf5ae7df30535ed000bfc0906ff25ad17b8f712d92826fe5a225c895f4031",
+  "libgeoconvert_nif-v0.0.12-nif-2.17-aarch64-unknown-linux-gnu.so.tar.gz" => "sha256:6550266ef78bca20e1992a3b15d1ec6a412cc475fe7e728a481798911ec2c55d",
+  "libgeoconvert_nif-v0.0.12-nif-2.17-x86_64-apple-darwin.so.tar.gz" => "sha256:f555b9151e03e423f3102562c2c52160e7d805df3553c900a11c7246e31f1a8f",
+  "libgeoconvert_nif-v0.0.12-nif-2.17-x86_64-unknown-linux-gnu.so.tar.gz" => "sha256:406955225be1b88d7c24516009ff4bf0e14b9da159ff7d07959b2c81a036f390"
+}
