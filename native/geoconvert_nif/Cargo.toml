@@ -12,3 +12,9 @@ rustler = "0.36"
 
 # Use embedded version that will be included in Hex packages
 geoconvert = { path = "../geoconvert_embedded" }
+
+[features]
+default = []
+nif_version_2_15 = ["rustler/nif_version_2_15"]
+nif_version_2_16 = ["rustler/nif_version_2_16"]
+nif_version_2_17 = ["rustler/nif_version_2_17"]
