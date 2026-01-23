@@ -93,6 +93,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: Generate checksums from artifacts
+        run: |
+          cd artifacts
+          echo '%{' > ../checksum-Elixir.ExMgrs.Native.exs
+          for file in *.tar.gz; do
+            checksum=$(sha256sum "$file" | awk '{print $1}')
+            echo "  \"$file\" => \"sha256:$checksum\"," >> ../checksum-Elixir.ExMgrs.Native.exs
+          done
+          echo '}' >> ../checksum-Elixir.ExMgrs.Native.exs
+          cd ..
+          echo "Generated checksums:"
+          cat checksum-Elixir.ExMgrs.Native.exs
+
       - name: Set up Elixir
         uses: erlef/setup-beam@v1
         with:
