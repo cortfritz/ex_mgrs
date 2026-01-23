@@ -51,7 +51,10 @@ defmodule ExMgrs.MixProject do
       ],
       maintainers: ["Cort Fritz"],
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/cortfritz/ex_mgrs"}
+      links: %{
+        "GitHub" => "https://github.com/cortfritz/ex_mgrs",
+        "Sponsor" => "https://github.com/sponsors/cortfritz"
+      }
     ]
   end
 
