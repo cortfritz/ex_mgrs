@@ -83,3 +83,56 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: artifacts/*
+
+  publish_hex:
+    name: Publish to Hex.pm
+    needs: release
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Elixir
+        uses: erlef/setup-beam@v1
+        with:
+          elixir-version: '1.19.2'
+          otp-version: '28'
+          install-hex: false
+          install-rebar: false
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install Hex and Rebar
+        run: |
+          mix archive.uninstall hex --force || true
+          mix local.hex --force
+          mix local.rebar --force
+
+      - name: Restore dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            deps
+            _build
+          key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+          restore-keys: ${{ runner.os }}-mix-
+
+      - name: Install dependencies
+        run: mix deps.get
+
+      - name: Download precompiled NIFs and generate checksums
+        run: |
+          mix rustler_precompiled.download ExMgrs.Native --all --print
+          ls -la checksum-*.exs
+
+      - name: Run tests
+        run: mix test
+        env:
+          MIX_ENV: test
+
+      - name: Publish to Hex
+        run: mix hex.publish --yes
+        env:
+          HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
