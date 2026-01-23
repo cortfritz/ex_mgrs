@@ -26,6 +26,9 @@ erl_crash.dump
 ex_mgrs-*.tar
 ex_mgrs-*/
 
+# Dialyzer PLT files (environment-specific, regenerated as needed)
+/priv/plts/
+
 # Rust compilation artifacts
 /native/geoconvert_nif/target/
 /native/geoconvert/target/
