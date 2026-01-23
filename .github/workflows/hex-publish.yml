@@ -1,9 +1,8 @@
 name: Publish to Hex.pm
 
 on:
-  push:
-    branches:
-      - hex
+  release:
+    types: [published]
 
 jobs:
   publish:
