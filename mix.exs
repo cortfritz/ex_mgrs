@@ -9,7 +9,8 @@ defmodule ExMgrs.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: description(),
-      package: package()
+      package: package(),
+      git_ops: git_ops()
     ]
   end
 
@@ -25,7 +26,30 @@ defmodule ExMgrs.MixProject do
     [
       {:rustler, "~> 0.36", runtime: false},
       {:rustler_precompiled, "~> 0.8"},
-      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
+      {:git_ops, "~> 2.6", only: :dev, runtime: false},
+      {:git_hooks, "~> 0.8", only: :dev, runtime: false}
+    ]
+  end
+
+  defp git_ops do
+    [
+      mix_project: __MODULE__,
+      changelog_file: "CHANGELOG.md",
+      repository_url: "https://github.com/cortfritz/ex_mgrs",
+      types: [
+        feat: [header: "Features"],
+        fix: [header: "Bug Fixes"],
+        perf: [header: "Performance"],
+        docs: [header: "Documentation", hidden?: true],
+        chore: [header: "Chores", hidden?: true],
+        ci: [header: "CI", hidden?: true],
+        refactor: [header: "Refactoring", hidden?: true],
+        test: [header: "Tests", hidden?: true],
+        build: [header: "Build", hidden?: true],
+        style: [header: "Style", hidden?: true]
+      ],
+      version_tag_prefix: "v"
     ]
   end
 

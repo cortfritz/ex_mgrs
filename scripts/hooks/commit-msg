@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+# Validates commit messages follow Conventional Commits format.
+# https://www.conventionalcommits.org/
+#
+# Install: cp scripts/hooks/commit-msg .git/hooks/commit-msg
+
+MSG_FILE="$1"
+MSG=$(head -1 "$MSG_FILE")
+
+PATTERN="^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\(.+\))?\!?: .+"
+
+if ! echo "$MSG" | grep -qE "$PATTERN"; then
+  echo ""
+  echo "ERROR: Invalid commit message format."
+  echo ""
+  echo "  Must follow Conventional Commits: <type>(<scope>): <description>"
+  echo "  Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert"
+  echo ""
+  echo "  Examples:"
+  echo "    feat(ecef): add ECEF coordinate conversions"
+  echo "    fix: correct geoid interpolation at antimeridian"
+  echo "    docs: update README with conversion matrix"
+  echo "    build!: drop support for OTP 26"
+  echo ""
+  echo "  Got: $MSG"
+  echo ""
+  exit 1
+fi
