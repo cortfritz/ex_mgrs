@@ -4,7 +4,7 @@ defmodule ExMgrs.MixProject do
   def project do
     [
       app: :ex_mgrs,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -70,12 +70,14 @@ defmodule ExMgrs.MixProject do
         "checksum-*.exs",
         "mix.exs",
         "README.md",
+        "CHANGELOG.md",
         "LICENSE*"
       ],
       maintainers: ["Cort Fritz"],
       licenses: ["MIT"],
       links: %{
         "GitHub" => "https://github.com/cortfritz/ex_mgrs",
+        "Changelog" => "https://github.com/cortfritz/ex_mgrs/blob/main/CHANGELOG.md",
         "Sponsor" => "https://github.com/sponsors/cortfritz"
       }
     ]
